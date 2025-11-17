@@ -14,9 +14,9 @@ export const systemPrompt = () => {
 
   const researchPhase = () => {
     return hour < 6 ? 'Night: Batch processing' :
-             hour < 12 ? 'Morning: Discovery' :
-             hour < 18 ? 'Afternoon: Validation' :
-             'Evening: Synthesis';
+            hour < 12 ? 'Morning: Discovery' :
+            hour < 18 ? 'Afternoon: Validation' :
+            'Evening: Synthesis';
   };
 
   const instructions = [
@@ -31,13 +31,18 @@ export const systemPrompt = () => {
     "Markdown formatting + self-correcting workflow"
   ];
 
-  // UPDATED: Added Key Learnings and References to the formal structure
+  // Web Research-Based Improvement: Add response format template
   const responseFormat = [
     "**Response Structure:**",
-    "1. Full Markdown Report (Single Output)",
-    "2. All sections from the TOC must be present and ordered correctly.",
-    "3. Key Learnings must be synthesized from findings and placed at the end.",
-    "4. References must be a numbered list of full source URIs and Titles."
+    "1. Executive Summary (3-5 bullet points)",
+    "2. Key Findings (categorized by relevance)",
+    "3. Methodology Description",
+    "4. Limitations Disclosure",
+    "5. Future Research Directions",
+    "6. Glossary of Technical Terms",
+    "7. All sections from the TOC must be present and ordered correctly.",
+    "8. Key Learnings must be synthesized from findings and placed at the end.",
+    "9. References must be a numbered list of full source URLs and Titles."
   ].join("\n");
 
   // Add time-based research parameters
@@ -56,7 +61,7 @@ export const systemPrompt = () => {
     minute: '2-digit',
     timeZoneName: 'short'
   })}
-**Research Protocol:** v2.3.2 (STRUCTURAL FIX)
+**Research Protocol:** v2.3.1
 **Model Capabilities:** ${process.env.GEMINI_MODEL || "gemini-2.5-flash"}
 **Research Phase:** ${researchPhase()}
 **Cognitive Load Profile:** ${hour < 12 ? 'High creativity' : 'High accuracy'} mode
@@ -67,46 +72,15 @@ ${responseFormat}
 ${instructions.map((i, idx) => `${idx + 1}. ${i}`).join("\n")}`;
 };
 
-//============================================================================================= 
-// export const serpQueryPromptTemplate = `## Search Strategy Configuration
-// **Query Type Distribution:**
-// - Informational: 40%
-// - Comparative: 25%
-// - Technical: 20%
-// - Exploratory: 15%
-
-// **Response Format Requirements:** (Return ONLY JSON matching this schema. No extra text.)
-// \`\`\`json
-// {
-//   "queries": {
-//     "type": "array",
-//     "items": {
-//       "type": "object",
-//       "properties": {
-//         "query": {"type": "string", "maxLength": 60},
-//         "type": {"type": "string", "enum": ["informational", "comparative", "technical", "exploratory"]},
-//         "expectedSources": {"type": "array", "items": {"type": "string"}}
-//       },
-//       "required": ["query", "type"]
-//     },
-//     "minItems": {{numQueries}},
-//     "maxItems": {{numQueries}}
-//   }
-// }
-// \`\`\``;
-
-
-// ============================================================================
-// extra code 
 export const serpQueryPromptTemplate = `## Search Strategy Configuration
-*Query Type Distribution:*
+**Query Type Distribution:**
 - Informational: 40%
 - Comparative: 25%
 - Technical: 20%
 - Exploratory: 15%
 
-*Response Format Requirements:* Your output MUST be a single, valid JSON object that strictly adheres to the schema below. Do not include any text, notes, or markdown formatting like \`\`\`json before or after the JSON object. Ensure all array elements are correctly separated by commas.
-
+**Response Format Requirements:** (Return ONLY JSON matching this schema. No extra text.)
+\`\`\`json
 {
   "queries": {
     "type": "array",
@@ -123,8 +97,8 @@ export const serpQueryPromptTemplate = `## Search Strategy Configuration
     "maxItems": {{numQueries}}
   }
 }
-`;
-// =================================================================
+\`\`\``;
+
 export const learningPromptTemplate = `## Content Analysis Protocol
 **Schema Version:** 2.1.0
 **Error Handling:**
@@ -179,74 +153,20 @@ export const feedbackPromptTemplate = `## Query Refinement Matrix
 }
 \`\`\``;
 
-// --- CRITICAL FIX: REVISED generateGeminiPrompt FUNCTION ---
+// --- REVISED generateGeminiPrompt FUNCTION ---
 export const generateGeminiPrompt = ({
-  query,
-  researchGoal,
-  learnings
+  query,        // Now used
+  researchGoal, // Now used
+  learnings    // Now used
 }: {
   query: string,
   researchGoal: string,
   learnings: string[]
 }): string => {
-  const learningSummary = learnings.length > 0
-    ? `Initial Learnings: ${learnings.join('; ')}`
-    : 'No initial learnings provided.';
-
-  return `
-**TASK:** Generate a comprehensive, doctorate-level research report based on the following Research Goal, Query, and provided search results.
-
-**PRIMARY REQUIREMENT:** The ENTIRE output must be a single Markdown block that STRICTLY follows the "Final Report Structure" below. Do not deviate from the headings and numbering.
-
-**INPUTS:**
-- **Research Goal:** ${researchGoal}
-- **Initial Query:** ${query}
-- **Learnings/Synthesis Input:** ${learningSummary}
-- **Search Results (Provided by Tool):** [The final prompt will contain the concatenated search results here]
-
----
-## Final Report Structure (STRICTLY adhere to this template)
----
-
-# [Report Title: Synthesize a professional title from the Research Goal]
-
-## Abstract
-[Synthesize a concise, 1-2 paragraph summary of the entire report's objective, methodology, and key findings.]
-
-## Table of Contents
-[Generate a numbered Table of Contents for sections I through VII.]
-
-# I. Introduction
-[Introduce the topic, state the research objective, and define the scope/key terms.]
-
-# II. Methodology Description
-[**MANDATORY:** Detail the data collection strategy, screening criteria, success metric application, and analytical framework used to conduct the research.]
-
-# III. Executive Summary
-[Synthesize 3-5 high-impact bullet points summarizing the most critical findings and market trends for an executive audience.]
-
-# IV. Key Findings: Analysis and Data Presentation
-[Present the core analysis, detailed metrics, and supporting evidence from the research. Use clear sub-headers (A, B, C...) as needed.]
-
-# V. Limitations Disclosure
-[**MANDATORY:** Clearly articulate the constraints of the research, including data availability, subjective definitions, and external market factors.]
-
-# VI. Future Research Directions
-[Suggest 3-5 logical next steps or extensions for this line of inquiry.]
-
-# VII. Glossary of Technical Terms
-[Define all specialized terms used in the report for clarity.]
-
----
-## Final Synthesis and Source Accountability
----
-
-## Key Learnings
-[**MANDATORY:** Synthesize the 3-5 most important, high-level takeaways (1-2 sentences each) from the entire report. This is the ultimate "So what?" section.]
-
-## References
-[**MANDATORY:** Use the source data provided by the search tool to generate a numbered list of all **full URLs and Titles** used to ground the report. Do not use generic placeholders.]
-`;
+  // Implement actual logic using all parameters
+  return `Research Goal: ${researchGoal}
+          Query: ${query}
+          Learnings: ${learnings.join(', ')}`;
 };
 // --- END REVISED generateGeminiPrompt FUNCTION ---
 
@@ -259,17 +179,11 @@ const validatePromptConsistency = () => {
   const templates = [systemPrompt, serpQueryPromptTemplate, learningPromptTemplate];
   const versions = templates.map(t => {
     const content = typeof t === 'function' ? t() : t;
-    // Update regex to reflect the new version format in systemPrompt
-    const match = content.match(/Protocol: v(\d+\.\d+\.\d+)/)?.[1] || content.match(/Schema Version: (\d+\.\d+\.\d+)/)?.[1];
-    return match;
+    return content.match(/Schema Version: (\d+\.\d+\.\d+)/)?.[1];
   });
 
-  // Filter out any undefined matches to avoid false positives if a template is incomplete
-  const definedVersions = versions.filter(v => v);
-
-  if (new Set(definedVersions).size > 1) {
-    // Log error but don't crash on prompt version mismatch for robustness
-    console.error(`Prompt version mismatch: ${definedVersions.join(' vs ')}`);
+  if (new Set(versions).size > 1) {
+    throw new Error(`Prompt version mismatch: ${versions.join(' vs ')}`);
   }
 };
 validatePromptConsistency(); // Run at module load

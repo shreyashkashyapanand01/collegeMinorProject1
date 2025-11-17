@@ -720,12 +720,14 @@ This report investigates the query: "${prompt}" using grounded web research with
 ## Body
 ${report}
 
-## Key Learnings
-${learnings.map(learning => `- ${learning}`).join('\n')}
 
-## References
-${visitedUrls.map(url => `- ${url}`).join('\n')}
 `;
+
+// ## Key Learnings
+// ${learnings.map(learning => `- ${learning}`).join('\n')}
+
+// ## References
+// ${visitedUrls.map(url => `- ${url}`).join('\n')}
 
   
   const finalReportContent=finalReport;
