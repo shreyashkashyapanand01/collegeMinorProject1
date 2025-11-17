@@ -1,4 +1,4 @@
-# Deep Research MCP Server
+# Deep Researcher
 
 [![Node.js](https://img.shields.io/badge/node.js-v22.x-green?style=flat-square&logo=node.js)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%5E5.9.2-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -458,3 +458,4 @@ Normalized citations to visited URLs.
 * 🧮 25% more efficient token usage
 "# researcher" 
 "# college_minor_project_working_last_option" 
+
