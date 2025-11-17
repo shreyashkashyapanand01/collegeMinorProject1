@@ -456,6 +456,3 @@ Normalized citations to visited URLs.
 * ⚡ 40% faster initial research cycles
 * 📉 60% reduction in API errors
 * 🧮 25% more efficient token usage
-#   r e p o r t G e n e r a t o r  
- #   c o l l e g e M i n o r P r o j e c t 1  
- 
