@@ -1,4 +1,4 @@
-# Deep Research MCP Server
+# Deep Researcher
 
 [![Node.js](https://img.shields.io/badge/node.js-v22.x-green?style=flat-square&logo=node.js)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%5E5.9.2-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -185,7 +185,7 @@ deep-research-mcp-server/
 1. **Clone the repository:**
 
     ```bash
-    git clone [your-repo-link-here]
+    git clone https://github.com/shreyashkashyapanand01/minor_project_withUI.git
     ```
 
 2. **Install dependencies:**
@@ -283,11 +283,17 @@ To run `deep-research` directly from the command line:
 ```bash
 npm run start "your research query"
 ```
+```bash
+npx tsx backend/server.ts
+```
 
 **Example:**
 
 ```bash
 npm run start "what are latest developments in ai research agents"
+```
+```bash
+npx tsx backend/server.ts
 ```
 
 ### MCP Inspector Testing
@@ -321,8 +327,8 @@ Optional providers (planned/behind flags): Exa/Tavily can be integrated later; F
 1) Clone and install
 
 ```bash
-git clone https://github.com/ssdeanx/deep-research-mcp-server
-cd deep-research-mcp-server
+git clone https://github.com/shreyashkashyapanand01/minor_project_withUI.git
+cd collegeMinorProject1
 npm i && npm run build
 ```
 
@@ -338,6 +344,9 @@ npx @modelcontextprotocol/inspector node --env-file .env.local dist/mcp-server.j
 
 ```bash
 npm run start "state of multi-agent research agents in 2025"
+```
+```bash
+npx tsx backend/server.ts
 ```
 
 ## Example Output
@@ -456,3 +465,5 @@ Normalized citations to visited URLs.
 * ⚡ 40% faster initial research cycles
 * 📉 60% reduction in API errors
 * 🧮 25% more efficient token usage
+"# researcher" 
+"# college_minor_project_working_last_option" 
