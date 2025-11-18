@@ -467,3 +467,12 @@ Normalized citations to visited URLs.
 * 🧮 25% more efficient token usage
 "# researcher" 
 "# college_minor_project_working_last_option" 
+
+## Screenshots
+
+**Here are the screenshots of the UI:**
+
+![Generated PDF](screenshots_UI/generated_pdf.png)
+![Homepage](screenshots_UI/homepage.png)
+![Terminal](screenshots_UI/terminal.png)
+
