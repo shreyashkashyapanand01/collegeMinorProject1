@@ -472,7 +472,22 @@ Normalized citations to visited URLs.
 
 **Here are the screenshots of the UI:**
 
-![Generated PDF](screenshots_UI/generated_pdf.png)
-![Homepage](screenshots_UI/homepage.png)
+---
+
+### Terminal screenshot to start the server
 ![Terminal](screenshots_UI/terminal.png)
+
+---
+
+### Homepage screenshot
+![Homepage](screenshots_UI/homepage.png)
+
+---
+
+### Final generated screenshot of PDF report
+![Generated PDF](screenshots_UI/generated_pdf.png)
+
+---
+
+
 
