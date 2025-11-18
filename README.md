@@ -153,7 +153,7 @@ Pipeline highlights:
 ## Project Structure
 
 ```text
-deep-research-mcp-server/
+deep-research/
 ├─ src/
 │  ├─ ai/
 │  │  ├─ providers.ts           # Gemini wrapper, tools, batching, caching
@@ -167,6 +167,11 @@ deep-research-mcp-server/
 │  ├─ terminal-utils.ts         # CLI helpers
 │  ├─ types.ts                  # Zod schemas/types
 │  └─ utils/                    # JSON/sanitize helpers
+├─ backend/
+│  └─ server.ts                 # Backend server entry point
+├─ frontend/
+│  ├─ index.html                # Frontend UI
+│  └─ script.js                 # Frontend logic
 ├─ dist/                        # Build output
 ├─ .env.example                 # Environment template
 ├─ package.json                 # Scripts/deps
@@ -185,7 +190,7 @@ deep-research-mcp-server/
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/shreyashkashyapanand01/collegeMinorProject1.git
+    git clone https://github.com/shreyashkashyapanand01/collegeMajorProject1.git
     ```
 
 2. **Install dependencies:**
@@ -327,8 +332,8 @@ Optional providers (planned/behind flags): Exa/Tavily can be integrated later; F
 1) Clone and install
 
 ```bash
-git clone https://github.com/shreyashkashyapanand01/collegeMinorProject1.git
-cd collegeMinorProject1
+git clone https://github.com/shreyashkashyapanand01/collegeMajorProject1.git
+cd collegeMajorProject1
 npm i && npm run build
 ```
 
