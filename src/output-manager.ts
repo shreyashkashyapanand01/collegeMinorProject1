@@ -58,22 +58,6 @@ export class OutputManager {
     }
   }
 
-
-  // -----------------------------------------
-// same function above 
-
-// private flushLogs() {
-//   // Use a simple console.log to guarantee the output is visible
-//   if (this.logQueue.length > 0) {
-//     console.log(this.logQueue.join('\n'));
-//     this.logQueue = []; // Clear the queue after printing
-//   }
-//   if (this.logTimer) {
-//     clearTimeout(this.logTimer);
-//     this.logTimer = undefined; // Reset the timer
-//   }
-// }
-// -----------------------------------------------------
   static logCacheEviction(value: unknown) {
     console.log(`Cache evicted: ${JSON.stringify(value)}`);
   }
